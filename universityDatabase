@@ -1,16 +1,19 @@
-CREATE TABLE subjectTimetable (
+ CREATE TABLE subjectTimetable (
   id int NOT NULL primary key,
   day varchar(255),
   StartTime time
  );
+ 
  CREATE TABLE faculty (
    id int NOT NULL primary key,
    FacultyName varchar(255)
  );
+ 
  CREATE TABLE courses (
   id int NOT NULL primary key,
   CourseNumber int
  );
+ 
  CREATE TABLE facultyCourses (
   id int NOT NULL primary key,
   faculty_id int,
@@ -20,6 +23,7 @@ CREATE TABLE subjectTimetable (
   foreign key (courses_id)
   references courses(id)
 );
+
  CREATE TABLE subject (
   id int NOT NULL primary key,
   SubjectName varchar(255),
@@ -30,11 +34,13 @@ CREATE TABLE subjectTimetable (
   foreign key (courses_id)
   references courses(id)
  );
+ 
  CREATE TABLE address (
   id int NOT NULL primary key,
   SecondAddress varchar(255),
   HouseNumber int
  );
+ 
  CREATE TABLE student (
   id int NOT NULL primary key,
   FirstName varchar(255),
@@ -54,6 +60,7 @@ CREATE TABLE subjectTimetable (
   foreign key (SecondAddress_id)
   references address(id)
  );
+ 
  CREATE TABLE lecturer (
   id int NOT NULL primary key,
   FirstName varchar(255),
@@ -69,6 +76,7 @@ CREATE TABLE subjectTimetable (
   foreign key (SecondAddress_id)
   references address(id)
  );
+ 
  CREATE TABLE lecturerSubject (
   id int NOT NULL primary key,
   lecturer_id int,
@@ -81,6 +89,7 @@ CREATE TABLE subjectTimetable (
   foreign key (subjectTimetable_id)
   references subjectTimetable(id)
  );
+ 
  CREATE TABLE manager (
   id int NOT NULL primary key,
   FirstName varchar(255),
@@ -100,14 +109,19 @@ CREATE TABLE subjectTimetable (
  
  insert into subjectTimetable (id, day, StartTime)
  values (1, 'Monday', '15:00:00');
+ 
  insert into faculty (id, FAcultyName)
  values (1, 'law');
+ 
  insert into courses (id, CourseNumber)
  values (1, 4);
+ 
  insert into facultyCourses (id, faculty_id, courses_id)
  values (1, 1, 1);
+ 
  insert into subject (id, SubjectName, faculty_id, courses_id)
  values (1, 'LegalTech', 1, 1);
+ 
  insert into address (id, SecondAddress, HouseNumber)
  values (1, 'batumi, Abashidze str', 6);
  insert into address (id, SecondAddress, HouseNumber)
@@ -116,15 +130,19 @@ CREATE TABLE subjectTimetable (
  values (3);
  insert into address (id)
  values (4);
+ 
  insert into student (id, FirstName, LastName, email, personal_id, Address, SecondAddress_id, DateOfBirth, Gender, faculty_id, courses_id)
  values (1, 'Lile', 'Sturua', 'lilesturua@gmail.com', '6100998989', 'Batumi, Gorgiladze str.', 1, '2001.07.29', 'Female', 1, 1);
  insert into student (id, FirstName, LastName, email, personal_id, Address, SecondAddress_id, DateOfBirth, Gender, faculty_id, courses_id)
  values (2, 'Sopo', 'Guliashvili', 'sopoguliashvili@gmail.com', '0110011001', 'Tbilisi. Vazha-fshavela str.', 3, '2000.12.29', 'Female', 1, 1);
  insert into student (id, FirstName, LastName, email, personal_id, Address, SecondAddress_id, DateOfBirth, Gender, faculty_id, courses_id)
  values (3, 'Eka', 'Jikurashvili', 'ekajikurashvili@gmail.com', '1010101010', 'Tbilisi, Saakadze str.', 4, '2001,03,19', 'Female', 1, 1);
+ 
  insert into lecturer (id, FirstName, LastName, email, personal_id, Address, SecondAddress_id, DateOfBirth, Gender, BankAccount, Rank)
- values (1, 'Alexander', 'mzhavanadze', 'alexander.mzh@gmail.com', '0101010101', 'Tbilisi, Chavchavadze str.', 2, '1975.10.10', 'Male', 'GE123450', 'Associate professor'); 
+ values (1, 'Alexander', 'mzhavanadze', 'alexander.mzh@gmail.com', '0101010101', 'Tbilisi, Chavchavadze str.', 2, '1975.10.10', 'Male', 'GE123450', 'Associate professor');
+ 
  insert into lecturerSubject (id, lecturer_id, subject_id, subjectTimetable_id)
  values (1, 1, 1, 1);
+ 
  insert into manager (id, FirstName, LastName, email, personal_id, Address, SecondAddress_id, DateOfBirth, Gender, Faculty_id)
  values (1, 'Ani', 'jikia', 'anijikia@gmail.com', '0101100101', 'Tbilisi, Rustaveli str.', 2, '1995.07.07', 'Female', 1)
